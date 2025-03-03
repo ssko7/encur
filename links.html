@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Columns</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #357abd;
+            text-shadow: 0 0 10px #357abd;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        .columns-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .column {
+            flex: 1;
+            background-color: rgba(37, 37, 37, 0.85);
+            padding: 2rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            max-width: 350px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .column:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .column:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .column:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #4CAF50, transparent);
+            transition: all 0.5s ease;
+        }
+
+        .column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .column:hover::before {
+            left: 100%;
+        }
+
+        .column h2 {
+            color: #357abd;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .column h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #357abd;
+            transition: width 0.3s ease;
+        }
+
+        .column:hover h2::after {
+            width: 100%;
+        }
+
+        .column p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-btn {
+            background-color: #357abd;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #357abd;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #357abd;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .columns-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="6466100-uhd_3840_2160_30fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <h1 class="page-title">Our Services</h1>
+    <div class="columns-container">
+        <div class="column">
+            <h2>Basic Registration</h2>
+            <p>For Basic registration of amount 150/- per person.</p>
+            <a href="https://forms.gle/qYjAX7bAE8EUGGAa9">
+                <button class="cta-btn">Click Here</button>
+            </a>
+                    </div>
+
+        <div class="column">
+            <h2>Workshop Registration</h2>
+            <p>For registration of Workshops</p>
+            <p></p>
+            <a href="https://forms.gle/kLxbDoGBB8xDK7nx9">
+                <button class="cta-btn">Click Here</button>
+            </a>
+                    </div>
+
+        <div class="column">
+            <h2>Event Registration</h2>
+            <p>For registration of Events</p>
+            <p></p>
+            <a href="https://forms.gle/G94CCsgcfrMRLNkL6">
+                <button class="cta-btn">Click Here</button>
+            </a>
+                    </div>
+    </div>
+</body>
+</html>
